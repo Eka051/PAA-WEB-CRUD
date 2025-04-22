@@ -8,104 +8,114 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body>
-        <nav class="bg-green-800 p-4 text-white flex justify-between items-center fixed w-full top-0 z-10">
+        <nav class="bg-green-800 p-3 sm:p-4 text-white flex justify-between items-center fixed w-full top-0 z-10">
             <div class="flex items-center">
-                <span class="text-xl font-semibold">TUGAS PAA MODUL 5</span>
+                <span class="text-lg sm:text-xl font-semibold">TUGAS PAA MODUL 5</span>
             </div>
         </nav>
-        <h1 class="text-3xl font-semibold text-center mt-28 mb-10">CRUD DATA FROM ENDPOINT API</h1>
+        <h1 class="text-2xl sm:text-3xl font-semibold text-center mt-20 sm:mt-28 mb-6 sm:mb-10 px-4">CRUD DATA FROM
+            ENDPOINT API</h1>
         <!-- CREATE -->
         <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
-            <div class="bg-blue-400 p-4 rounded w-1/2 text-center">
-                <h2 class="font-semibold text-white text-2xl">CREATE</h2>
+            <div class="bg-blue-400 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <h2 class="font-semibold text-white text-xl sm:text-2xl">CREATE</h2>
             </div>
-            <form id="create" class="w-1/2">
-                <div class="flex flex-col gap-2 mt-5">
+            <form id="create" class="w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 px-4 sm:px-0">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="name">Name</label>
                     <input type="text" id="name" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan nama produk" required>
                 </div>
-                <div class="flex flex-col gap-2 mt-5">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="price">Price</label>
                     <input type="number" id="price" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan harga produk" required>
                 </div>
-                <div class="flex flex-col gap-2 mt-5">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="stock">Stock</label>
                     <input type="number" id="stock" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan stok produk" required>
                 </div>
-                <div class="mt-5">
-                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Submit</button>
+                <div class="mt-4 sm:mt-5">
+                    <button type="submit"
+                        class="bg-green-800 px-4 sm:px-6 py-2 text-white rounded p-2 w-full sm:w-auto">Submit</button>
                 </div>
             </form>
-            <div class="mt-5 p-4 border border-gray-300 rounded bg-gray-100 w-1/2 text-center">
-                <p class="text-lg font-medium text-gray-700" id="result-post"></p>
+            <div
+                class="mt-4 sm:mt-5 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <p class="text-base sm:text-lg font-medium text-gray-700" id="result-post"></p>
             </div>
         </div>
         <!-- READ MANY / GET ALL -->
         <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
-            <div class="bg-blue-600 p-4 rounded w-1/2 text-center">
-                <h2 class="font-semibold text-white text-2xl">READ MANY / GET ALL PRODUCT</h2>
+            <div class="bg-blue-600 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <h2 class="font-semibold text-white text-xl sm:text-2xl">READ MANY / GET ALL PRODUCT</h2>
             </div>
-            <div class="mt-5">
-                <button onclick="getAll()" class="bg-green-800 px-6 py-2 mx-auto text-white rounded p-2">GET Data All
+            <div class="mt-4 sm:mt-5">
+                <button onclick="getAll()" class="bg-green-800 px-4 sm:px-6 py-2 mx-auto text-white rounded p-2">GET
+                    Data All
                     Product</button>
             </div>
-            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+            <div
+                class="mt-4 sm:mt-5 mb-10 sm:mb-20 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2">
                 <p class="font-medium text-gray-700" id="result-getAll"></p>
             </div>
         </div>
         <!-- READ ONE (Get By ID) -->
         <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
-            <div class="bg-blue-300 p-4 rounded w-1/2 text-center">
-                <h2 class="font-semibold text-2xl">READ ONE / GET Product By ID</h2>
+            <div class="bg-blue-300 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <h2 class="font-semibold text-xl sm:text-2xl">READ ONE / GET Product By ID</h2>
             </div>
-            <form onsubmit="getByID()" id="getByID" class="w-1/2">
-                <div class="flex flex-col gap-2 mt-5">
+            <form onsubmit="getByID()" id="getByID" class="w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 px-4 sm:px-0">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="id">ID</label>
                     <input type="text" id="id" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan ID Produk" required>
                 </div>
-                <div class="mt-5">
-                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Submit</button>
+                <div class="mt-4 sm:mt-5">
+                    <button type="submit"
+                        class="bg-green-800 px-4 sm:px-6 py-2 text-white rounded p-2 w-full sm:w-auto">Submit</button>
                 </div>
             </form>
-            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+            <div
+                class="mt-4 sm:mt-5 mb-10 sm:mb-20 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2">
                 <p class="font-medium text-gray-700" id="result-getByID"></p>
             </div>
         </div>
         <!-- UPDATE -->
         <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
-            <div class="bg-green-500 p-4 rounded w-1/2 text-center">
-                <h2 class="font-semibold text-white text-2xl">UPDATE </h2>
+            <div class="bg-green-500 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <h2 class="font-semibold text-white text-xl sm:text-2xl">UPDATE</h2>
             </div>
-            <form onsubmit="updateByID()" id="update" class="w-1/2">
-                <div class="flex flex-col gap-2 mt-5">
+            <form onsubmit="updateByID()" id="update" class="w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 px-4 sm:px-0">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="id-produk" class="font-semibold">ID</label>
                     <input type="text" id="id-produk" class="border border-gray-500 rounded p-2"
                         placeholder="Masukkan ID Produk" required>
                 </div>
-                <div class="flex flex-col gap-2 mt-5">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" class="border border-gray-300 rounded p-2"
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
+                    <label for="name-produk">Name</label>
+                    <input type="text" id="name-produk" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan nama produk" required>
                 </div>
-                <div class="flex flex-col gap-2 mt-5">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="price-produk">Price</label>
                     <input type="number" id="price-produk" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan harga produk" required>
                 </div>
-                <div class="flex flex-col gap-2 mt-5">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="stock-produk">Stock</label>
                     <input type="number" id="stock-produk" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan stok produk" required>
                 </div>
-                <div class="mt-5">
-                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Update Data</button>
+                <div class="mt-4 sm:mt-5">
+                    <button type="submit"
+                        class="bg-green-800 px-4 sm:px-6 py-2 text-white rounded p-2 w-full sm:w-auto">Update
+                        Data</button>
                 </div>
             </form>
-            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+            <div
+                class="mt-4 sm:mt-5 mb-10 sm:mb-20 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2">
                 <p class="font-medium text-gray-700" id="result-update"></p>
             </div>
         </div>
@@ -113,34 +123,38 @@
         <!-- DELETE -->
         <div>
             <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
-                <div class="bg-red-500 p-4 rounded w-1/2 text-center">
-                    <h2 class="font-semibold text-white text-2xl">DELETE</h2>
+                <div class="bg-red-500 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                    <h2 class="font-semibold text-white text-xl sm:text-2xl">DELETE</h2>
                 </div>
-                <div class="mt-5">
-                    <button onclick="deleteAll()" class="bg-green-800 px-6 py-2 text-white rounded p-2">Delete All
+                <div class="mt-4 sm:mt-5">
+                    <button onclick="deleteAll()"
+                        class="bg-green-800 px-4 sm:px-6 py-2 text-white rounded p-2 w-full sm:w-auto">Delete All
                         Data</button>
                 </div>
-                <div id="result-delete" class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+                <div id="result-delete"
+                    class="mt-4 sm:mt-5 mb-10 sm:mb-20 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2">
                     <p class="font-medium text-gray-700" id="result-delete"></p>
                 </div>
             </div>
         </div>
         <!-- DELETE BY ID -->
         <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
-            <div class="bg-red-600 p-4 rounded w-1/2 text-center">
-                <h2 class="font-semibold text-2xl text-white">DELETE By ID</h2>
+            <div class="bg-red-600 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <h2 class="font-semibold text-xl sm:text-2xl text-white">DELETE By ID</h2>
             </div>
-            <form id="deleteByID" class="w-1/2">
-                <div class="flex flex-col gap-2 mt-5">
+            <form id="deleteByID" class="w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 px-4 sm:px-0">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
                     <label for="id-delete">ID</label>
                     <input type="text" id="id-delete" class="border border-gray-300 rounded p-2"
                         placeholder="Masukkan ID Produk" required>
                 </div>
-                <div class="mt-5">
-                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Delete</button>
+                <div class="mt-4 sm:mt-5">
+                    <button type="submit"
+                        class="bg-green-800 px-4 sm:px-6 py-2 text-white rounded p-2 w-full sm:w-auto">Delete</button>
                 </div>
             </form>
-            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+            <div
+                class="mt-4 sm:mt-5 mb-10 sm:mb-20 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2">
                 <p class="font-medium text-gray-700" id="result-deleteByID"></p>
             </div>
         </div>
@@ -214,12 +228,12 @@
                     contentType: 'application/json',
                     dataType: 'json',
                     success: function (data) {
-                        let result = "<h2 class='text-2xl font-semibold mb-5'>Data Produk</h2>";
+                        let result = "<h2 class='text-xl sm:text-2xl font-semibold mb-3 sm:mb-5'>Data Produk</h2>";
                         if (data.data.length === 0) {
                             result += "<p>Tidak ada data produk.</p>";
                         }
                         data.data.forEach(function (item) {
-                            result += `<div class="p-4 border mb-4 rounded-2xl bg-gray-100">` +
+                            result += `<div class="p-3 sm:p-4 border mb-3 sm:mb-4 rounded-2xl bg-gray-100">` +
                                 `<p>ID : ${item.id}</p>` +
                                 `<p>Nama : ${item.name}</p>` +
                                 `<p>Harga : ${item.price}</p>` +
@@ -250,7 +264,7 @@
                     success: function (data) {
                         const item = data.data;
                         const result = item ?
-                            `<div class="p-4 border mb-4 rounded-2xl bg-gray-100">
+                            `<div class="p-3 sm:p-4 border mb-3 sm:mb-4 rounded-2xl bg-gray-100">
                                 <p>ID : ${item.id}</p>
                                 <p>Nama : ${item.name}</p>
                                 <p>Harga : ${item.price}</p>
