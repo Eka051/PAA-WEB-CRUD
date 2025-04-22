@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PAA MODUL 5</title>
+        <link rel="stylesheet" href="./src/output.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <nav class="bg-green-800 p-4 text-white flex justify-between items-center fixed w-full top-0 z-10">
+            <div class="flex items-center">
+                <span class="text-xl font-semibold">TUGAS PAA MODUL 5</span>
+            </div>
+        </nav>
+        <h1 class="text-3xl font-semibold text-center mt-28 mb-10">CRUD DATA FROM ENDPOINT API</h1>
+        <!-- CREATE -->
+        <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+            <div class="bg-blue-400 p-4 rounded w-1/2 text-center">
+                <h2 class="font-semibold text-white text-2xl">CREATE</h2>
+            </div>
+            <form id="create" class="w-1/2">
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan nama produk" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="price">Price</label>
+                    <input type="number" id="price" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan harga produk" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="stock">Stock</label>
+                    <input type="number" id="stock" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan stok produk" required>
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Submit</button>
+                </div>
+            </form>
+            <div class="mt-5 p-4 border border-gray-300 rounded bg-gray-100 w-1/2 text-center">
+                <p class="text-lg font-medium text-gray-700" id="result-post"></p>
+            </div>
+        </div>
+        <!-- READ MANY / GET ALL -->
+        <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+            <div class="bg-blue-600 p-4 rounded w-1/2 text-center">
+                <h2 class="font-semibold text-white text-2xl">READ MANY / GET ALL PRODUCT</h2>
+            </div>
+            <div class="mt-5">
+                <button onclick="getAll()" class="bg-green-800 px-6 py-2 mx-auto text-white rounded p-2">GET Data All
+                    Product</button>
+            </div>
+            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+                <p class="font-medium text-gray-700" id="result-getAll"></p>
+            </div>
+        </div>
+        <!-- READ ONE (Get By ID) -->
+        <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+            <div class="bg-blue-300 p-4 rounded w-1/2 text-center">
+                <h2 class="font-semibold text-2xl">READ ONE / GET Product By ID</h2>
+            </div>
+            <form onsubmit="getByID()" id="getByID" class="w-1/2">
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="id">ID</label>
+                    <input type="text" id="id" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan ID Produk" required>
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Submit</button>
+                </div>
+            </form>
+            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+                <p class="font-medium text-gray-700" id="result-getByID"></p>
+            </div>
+        </div>
+        <!-- UPDATE -->
+        <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+            <div class="bg-green-500 p-4 rounded w-1/2 text-center">
+                <h2 class="font-semibold text-white text-2xl">UPDATE </h2>
+            </div>
+            <form onsubmit="updateByID()" id="update" class="w-1/2">
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="id-produk" class="font-semibold">ID</label>
+                    <input type="text" id="id-produk" class="border border-gray-500 rounded p-2"
+                        placeholder="Masukkan ID Produk" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan nama produk" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="price-produk">Price</label>
+                    <input type="number" id="price-produk" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan harga produk" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="stock-produk">Stock</label>
+                    <input type="number" id="stock-produk" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan stok produk" required>
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Update Data</button>
+                </div>
+            </form>
+            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+                <p class="font-medium text-gray-700" id="result-update"></p>
+            </div>
+        </div>
+
+        <!-- DELETE -->
+        <div>
+            <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+                <div class="bg-red-500 p-4 rounded w-1/2 text-center">
+                    <h2 class="font-semibold text-white text-2xl">DELETE</h2>
+                </div>
+                <div class="mt-5">
+                    <button onclick="deleteAll()" class="bg-green-800 px-6 py-2 text-white rounded p-2">Delete All
+                        Data</button>
+                </div>
+                <div id="result-delete" class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+                    <p class="font-medium text-gray-700" id="result-delete"></p>
+                </div>
+            </div>
+        </div>
+        <!-- DELETE BY ID -->
+        <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+            <div class="bg-red-600 p-4 rounded w-1/2 text-center">
+                <h2 class="font-semibold text-2xl text-white">DELETE By ID</h2>
+            </div>
+            <form id="deleteByID" class="w-1/2">
+                <div class="flex flex-col gap-2 mt-5">
+                    <label for="id-delete">ID</label>
+                    <input type="text" id="id-delete" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan ID Produk" required>
+                </div>
+                <div class="mt-5">
+                    <button type="submit" class="bg-green-800 px-6 py-2 text-white rounded p-2">Delete</button>
+                </div>
+            </form>
+            <div class="mt-5 mb-20 p-4 border border-gray-300 rounded bg-gray-100 w-1/2">
+                <p class="font-medium text-gray-700" id="result-deleteByID"></p>
+            </div>
+        </div>
+
+        <script>
+            let endpoint = 'https://praktikum-paa.vercel.app/api/produk';
+            $(document).ready(function () {
+                $("#create").on("submit", function (event) {
+                    event.preventDefault();
+                    insert();
+                });
+                $("#getByID").on("submit", function (event) {
+                    event.preventDefault();
+                    getByID();
+                });
+                $("#update").on("submit", function (event) {
+                    event.preventDefault();
+                    updateByID();
+                });
+                $("#delete").on("submit", function (event) {
+                    event.preventDefault();
+                    deleteAll();
+                });
+                $("#deleteByID").on("submit", function (event) {
+                    event.preventDefault();
+                    deleteByID();
+                });
+            })
+            function insert() {
+                event.preventDefault();
+                $("#result-post").html("");
+                const name = $("#name").val();
+                let priceValue = $("#price").val().trim();
+                let price = priceValue ? parseFloat(priceValue) : null;
+                const stock = parseInt($("#stock").val()) || 0;
+
+                $.ajax({
+                    url: endpoint,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        name: name,
+                        price: price,
+                        stock: stock,
+                    }),
+                    success: function (data) {
+                        $("#result-post").html(
+                            `<p>Sukses</p>` +
+                            `<p>Nama : ${data.data.name}</p>` +
+                            `<p>Harga : ${data.data.price}</p>` +
+                            `<p>Stok : ${data.data.stock}</p>`
+                        );
+                    },
+                    error: function (xhr, status, error) {
+                        $("#result-post").html(
+                            `<p>Gagal</p>` +
+                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
+                            `<p>Response: ${xhr.responseText}</p>`
+                        );
+                    }
+                });
+            }
+
+            function getAll() {
+                event.preventDefault();
+                $("#result-getAll").html("");
+                $.ajax({
+                    url: endpoint,
+                    method: 'GET',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (data) {
+                        let result = "<h2 class='text-2xl font-semibold mb-5'>Data Produk</h2>";
+                        if (data.data.length === 0) {
+                            result += "<p>Tidak ada data produk.</p>";
+                        }
+                        data.data.forEach(function (item) {
+                            result += `<div class="p-4 border mb-4 rounded-2xl bg-gray-100">` +
+                                `<p>ID : ${item.id}</p>` +
+                                `<p>Nama : ${item.name}</p>` +
+                                `<p>Harga : ${item.price}</p>` +
+                                `<p>Stok : ${item.stock}</p>` +
+                                `</div>`;
+                        });
+                        $("#result-getAll").html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#result-getAll").html(
+                            `<p>Gagal</p>` +
+                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
+                            `<p>Response: ${xhr.responseText}</p>`
+                        );
+                    }
+                });
+            }
+
+            function getByID() {
+                event.preventDefault();
+                $("#result-getByID").html("");
+                const id = $("#id").val();
+                $.ajax({
+                    url: endpoint + '/' + id,
+                    method: 'GET',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (data) {
+                        const item = data.data;
+                        const result = item ?
+                            `<div class="p-4 border mb-4 rounded-2xl bg-gray-100">
+                                <p>ID : ${item.id}</p>
+                                <p>Nama : ${item.name}</p>
+                                <p>Harga : ${item.price}</p>
+                                <p>Stok : ${item.stock}</p>
+                            </div>` :
+                            "<p>Data tidak ditemukan.</p>";
+                        $("#result-getByID").html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        $("#result-getByID").html(
+                            `<p>Gagal</p>` +
+                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
+                            `<p>Response: ${xhr.responseText}</p>`
+                        );
+                    }
+                });
+            }
+
+            function deleteAll() {
+                event.preventDefault();
+                $("#result-delete").html("");
+                $.ajax({
+                    url: endpoint,
+                    method: 'DELETE',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#result-delete").html(
+                            `<p>Berhasil menghapus semua data</p>` +
+                            `<p>${data.message}</p>`
+                        );
+                    },
+                    error: function (xhr, status, error) {
+                        $("#result-delete").html(
+                            `<p>Gagal</p>` +
+                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
+                            `<p>Response: ${xhr.responseText}</p>`
+                        );
+                    }
+                });
+            }
+
+            function deleteByID() {
+                event.preventDefault();
+                $("#result-deleteByID").html("");
+                const id = parseInt($("#id-delete").val());
+                $.ajax({
+                    url: endpoint + '/' + id,
+                    method: 'DELETE',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    success: function (data) {
+                        $("#result-deleteByID").html(
+                            `<p>Sukses</p>` +
+                            `<p>${data.message}</p>`
+                        );
+                    },
+                    error: function (xhr, status, error) {
+                        let response = JSON.parse(xhr.responseText);
+                        $("#result-deleteByID").html(
+                            `<p>Gagal</p>` +
+                            `<p>Message: ${response.message}</p>` +
+                            `<p>Error: ${response.error}</p>`
+                        );
+                    }
+                });
+            }
+
+            function updateByID() {
+                event.preventDefault();
+                $("#result-update").html("");
+                const id = $("#id-produk").val();
+                const name = $("#name-produk").val();
+                let priceValue = $("#price-produk").val().trim();
+                let price = parseFloat(priceValue);
+                const stock = parseInt($("#stock-produk").val());
+
+                $.ajax({
+                    url: endpoint + '/' + id,
+                    method: 'PUT',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        name: name,
+                        price: price,
+                        stock: stock,
+                    }),
+                    success: function (data) {
+                        $("#result-update").html(
+                            `<p>Sukses</p>` +
+                            `<p>ID : ${data.data.id}</p>` +
+                            `<p>Nama : ${data.data.name}</p>` +
+                            `<p>Harga : ${data.data.price}</p>` +
+                            `<p>Stok : ${data.data.stock}</p>`
+                        );
+                    },
+                    error: function (xhr, status, error) {
+                        $("#result-update").html(
+                            `<p>Gagal</p>` +
+                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
+                            `<p>Response: ${xhr.responseText}</p>`
+                        );
+                    }
+                });
+            }
+
+            function updateStock() {
+                event.preventDefault();
+                $("#result-updateStock").html("");
+                const id = $("#id").val();
+                const stock = parseInt($("#stock").val()) || 0;
+
+                $.ajax({
+                    url: endpoint + '/update-stock/' + id,
+                    method: 'PATCH',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({
+                        stock: stock,
+                    }),
+                    success: function (data) {
+                        $("#result-updateStock").html(
+                            `<p>Sukses</p>` +
+                            `<p>ID : ${data.data.id}</p>` +
+                            `<p>Nama : ${data.data.name}</p>` +
+                            `<p>Harga : ${data.data.price}</p>` +
+                            `<p>Stok : ${data.data.stock}</p>`
+                        );
+                    },
+                    error: function (xhr, status, error) {
+                        $("#result-updateStock").html(
+                            `<p>Gagal</p>` +
+                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
+                            `<p>Response: ${xhr.responseText}</p>` +
+                            `<p>Error: ${error}</p>`
+                        );
+                    }
+                });
+            }
+
+        </script>
+    </body>
+</html>
