@@ -6,6 +6,7 @@
         <title>PAA MODUL 5</title>
         <link rel="stylesheet" href="./src/output.css">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
     <body>
         <nav class="bg-green-800 p-3 sm:p-4 text-white flex justify-between items-center fixed w-full top-0 z-10">
@@ -120,6 +121,34 @@
             </div>
         </div>
 
+        <!-- UPDATE STOCK -->
+        <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
+            <div class="bg-cyan-400 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
+                <h2 class="font-semibold text-xl sm:text-2xl text-white">UPDATE STOCK</h2>
+            </div>
+            <form id="updateStock" class="w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 px-4 sm:px-0">
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
+                    <label for="id-stock">ID</label>
+                    <input type="text" id="id-stock" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan ID Produk" required>
+                </div>
+                <div class="flex flex-col gap-2 mt-4 sm:mt-5">
+                    <label for="stock-update">Stock</label>
+                    <input type="number" id="stock-update" class="border border-gray-300 rounded p-2"
+                        placeholder="Masukkan stok produk" required>
+                </div>
+                <div class="mt-4 sm:mt-5">
+                    <button type="submit"
+                        class="bg-green-800 px-4 sm:px-6 py-2 text-white rounded p-2 w-full sm:w-auto">Update
+                        Stock</button>
+                </div>
+            </form>
+            <div
+                class="mt-4 sm:mt-5 mb-10 sm:mb-20 p-3 sm:p-4 border border-gray-300 rounded bg-gray-100 w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2">
+                <p class="font-medium text-gray-700" id="result-updateStock"></p>
+            </div>
+        </div>
+
         <!-- DELETE -->
         <div>
             <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
@@ -137,6 +166,7 @@
                 </div>
             </div>
         </div>
+
         <!-- DELETE BY ID -->
         <div class="flex flex-col items-center gap-2 w-full mx-auto mt-5">
             <div class="bg-red-600 p-3 sm:p-4 rounded w-[90%] sm:w-[80%] md:w-2/3 lg:w-1/2 text-center">
@@ -173,6 +203,10 @@
                 $("#update").on("submit", function (event) {
                     event.preventDefault();
                     updateByID();
+                });
+                $("#updateStock").on("submit", function (event) {
+                    event.preventDefault();
+                    updateStock();
                 });
                 $("#delete").on("submit", function (event) {
                     event.preventDefault();
@@ -374,8 +408,8 @@
             function updateStock() {
                 event.preventDefault();
                 $("#result-updateStock").html("");
-                const id = $("#id").val();
-                const stock = parseInt($("#stock").val()) || 0;
+                const id = parseInt($("#id-stock").val());
+                const stock = parseInt($("#stock-update").val());
 
                 $.ajax({
                     url: endpoint + '/update-stock/' + id,
@@ -395,11 +429,11 @@
                         );
                     },
                     error: function (xhr, status, error) {
+                        let response = JSON.parse(xhr.responseText);
                         $("#result-updateStock").html(
                             `<p>Gagal</p>` +
-                            `<p>Status: ${xhr.status} ${xhr.statusText}</p>` +
-                            `<p>Response: ${xhr.responseText}</p>` +
-                            `<p>Error: ${error}</p>`
+                            `<p>Message: ${response.message}</p>` +
+                            `<p>Error: ${response.error}</p>`
                         );
                     }
                 });
